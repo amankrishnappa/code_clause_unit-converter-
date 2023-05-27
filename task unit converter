@@ -1,0 +1,104 @@
+//HTML
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Unit Converter</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+  <h1>Length Converter</h1>
+  <div class="converter-container">
+    <input type="number" id="input value" placeholder="Enter value">
+    <select id="unit selection">
+      <option value="meter">Meter</option>
+      <option value="feet">Feet</option>
+      <option value="inch">Inch</option>
+    </select>
+    <button onclick="convert length()">Convert</button>
+  </div>
+  <div id="convertedLength"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
+
+
+//css
+
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+h1 {
+  margin-top: 50px;
+}
+
+.converter-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+input[type="number"] {
+  width: 150px;
+  padding: 10px;
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+select {
+  padding: 10px;
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+}
+
+#convertedLength {
+  margin-top: 20px;
+  font-size: 18px;
+}
+
+
+//js
+
+function convert length() {
+  var input value = parseFloat(document.getElementById("input value").value);
+  var unit selection = document.getElementById("unit selection").value;
+  var convertedLength;
+
+  if (unit selection === "meter") {
+    convertedLength = {
+      feet: input value * 3.28084,
+      inch: input value * 39.3701
+    };
+  } else if (unit selection === "feet") {
+    convertedLength = {
+      meter: input value * 0.3048,
+      inch: input value * 12
+    };
+  } else if (unit selection === "inch") {
+    convertedLength = {
+      meter: input value * 0.0254,
+      feet: input value * 0.0833333
+    };
+  }
+
+  var result text = "Converted Length: ";
+  if (convertedLength.meter) {
+    resultText += convertedLength.meter.toFixed(2) + " meters, ";
+  }
+  if (convertedLength.feet) {
+    resultText += convertedLength.feet.toFixed(2) + " feet, ";
+  }
+  if (convertedLength.inch) {
+    resultText += convertedLength.inch.toFixed(2) + " inches";
+  }
+
+  document.getElementById("convertedLength").textContent = resultText;
+}
